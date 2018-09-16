@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -53,8 +54,15 @@ public class ApiService{
                         }
                         bufferedReader.close();
 
-                        JSONObject object = (JSONObject) new JSONTokener(stringBuilder.toString()).nextValue();
-                        callback.apiResultAction(object, callbackId);
+                        try {
+                            JSONObject object = (JSONObject) new JSONTokener(stringBuilder.toString()).nextValue();
+                            callback.apiResultAction(object, callbackId);
+                        }catch (Exception e){
+                            JSONArray object = (JSONArray) new JSONTokener(stringBuilder.toString()).nextValue();
+                            callback.apiResultAction(object, callbackId);
+                        }
+
+
 
                     }finally {
                         urlConnection.disconnect();
@@ -73,6 +81,7 @@ public class ApiService{
 
     public interface ApiServiceInterface{
         void apiResultAction(JSONObject result, String callbackId);
+        void apiResultAction(JSONArray result, String callbackId);
         void apiErrorAction(String message, String callbackId);
     }
 

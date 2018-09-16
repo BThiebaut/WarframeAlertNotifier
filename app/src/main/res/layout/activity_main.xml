@@ -23,6 +23,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_cetus"
+        android:textSize="25dp"
         />
 
     <TextView
@@ -34,18 +35,45 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cetus_current_cycle"
         />
-    <Button
+
+    <TextView
+        android:id="@+id/txt_alert_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/cetus_current_time"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:drawableLeft="@drawable/ic_cached_black_24dp"
-        android:gravity="center"
-        android:minHeight="0dp"
-        android:minWidth="0dp"
-        android:onClick="refreshCetusTimer"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:text="Alert list"
         />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_alert_list"
+            >
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/pullToRefresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <ListView
+                    android:id="@+id/list_alert"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/txt_alert_list"
+                    android:layout_margin="10dp"
+                    />
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+        </LinearLayout>
+
+
 
 
 </android.support.constraint.ConstraintLayout>

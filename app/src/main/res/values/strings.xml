@@ -80,4 +80,10 @@
     <string name="alertes">Alertes</string>
     <string name="nitain">Nitain</string>
     <string name="enregistrer">Enregistrer</string>
+    <string name="day">Day</string>
+    <string name="night">Night</string>
+    <string name="timeleft">Time left :</string>
+    <string name="end">End :</string>
+    <string name="channel_name">warframe notifier</string>
+    <string name="channel_description">Warframe notifier channel</string>
 </resources>

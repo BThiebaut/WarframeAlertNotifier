@@ -26,8 +26,19 @@ public class PreferenciesActivity extends AppCompatActivity {
         chkCetus = findViewById(R.id.check_cetus);
         edtCetus = findViewById(R.id.cetustimer);
         chkNitain = findViewById(R.id.check_nitain);
+        ArrayAdapter<PreferenciesManager.Platforms> adapter = new ArrayAdapter<PreferenciesManager.Platforms>(this, android.R.layout.simple_spinner_item, PreferenciesManager.Platforms.values());
+        platform.setAdapter(adapter);
 
-        platform.setAdapter(new ArrayAdapter<PreferenciesManager.Platforms>(this, android.R.layout.simple_spinner_item, PreferenciesManager.Platforms.values()));
+        PreferenciesManager.Platforms memoryPlat = PreferenciesManager.getInstance(this).getPlateform();
+        boolean isCetusCheck = PreferenciesManager.getInstance(this).isCetusEnabled();
+        int edtTimer = PreferenciesManager.getInstance(this).getCetusTimer();
+
+        platform.setSelection(adapter.getPosition(memoryPlat));
+        chkCetus.setChecked(isCetusCheck);
+        edtCetus.setText(""+ edtTimer);
+        chkNitain.setChecked(PreferenciesManager.getInstance(this).getAlertEnabled(PreferenciesManager.PREF_ALERT_NITAIN));
+
+
     }
 
     public void savePref(View view) {
