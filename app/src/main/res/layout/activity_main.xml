@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/txt_cetus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cetus"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/cetus_current_cycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refreshing..."
+        android:layout_marginTop="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_cetus"
+        />
+
+    <TextView
+        android:id="@+id/cetus_current_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refreshing..."
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cetus_current_cycle"
+        />
+
+
+</android.support.constraint.ConstraintLayout>

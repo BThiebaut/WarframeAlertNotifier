@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PreferenciesActivity"
+    android:layout_margin="10dp"
+    >
+
+    <TextView
+        android:id="@+id/txt_notif_cetus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notification_jour_nuit_cetus"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <CheckBox
+        android:id="@+id/check_cetus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@id/txt_notif_cetus"
+        />
+
+    <TextView
+        android:id="@+id/txt_timer_cetus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/timer_cetus"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_notif_cetus"
+        />
+    <EditText
+        android:id="@+id/cetustimer"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@id/txt_timer_cetus"
+        android:inputType="number"
+        />
+    <TextView
+        android:id="@+id/txt_platform"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/plateforme"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_timer_cetus"
+        />
+    <Spinner
+        android:id="@+id/spin_platform"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txt_timer_cetus"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@id/txt_platform"
+        />
+
+    <TextView
+        android:id="@+id/cat_alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txt_platform"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:text="@string/alertes"
+        />
+
+    <TextView
+        android:id="@+id/txt_alert_nitain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nitain"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cat_alert"
+        />
+
+    <CheckBox
+        android:id="@+id/check_nitain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@id/txt_alert_nitain"
+        />
+
+    <Button
+        android:id="@+id/savepref"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/enregistrer"
+        android:onClick="savePref"
+        />
+
+
+</android.support.constraint.ConstraintLayout>
