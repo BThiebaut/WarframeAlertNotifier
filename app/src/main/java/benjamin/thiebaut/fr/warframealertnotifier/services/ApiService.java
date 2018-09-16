@@ -37,36 +37,43 @@ public class ApiService{
         this.plateform = pf.toString().toLowerCase();
     }
 
-    public void callApi(String path, ApiServiceInterface callback){
-        try {
-            URL url = new URL(API_BASE_URL + "/" + plateform + "/" + path);
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            try {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                StringBuilder stringBuilder = new StringBuilder();
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(line).append("\n");
+    public void callApi(final String path, final ApiServiceInterface callback, final String callbackId){
+        final Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(API_BASE_URL + "/" + plateform + "/" + path);
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                    try {
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                        StringBuilder stringBuilder = new StringBuilder();
+                        String line;
+                        while ((line = bufferedReader.readLine()) != null) {
+                            stringBuilder.append(line).append("\n");
+                        }
+                        bufferedReader.close();
+
+                        JSONObject object = (JSONObject) new JSONTokener(stringBuilder.toString()).nextValue();
+                        callback.apiResultAction(object, callbackId);
+
+                    }finally {
+                        urlConnection.disconnect();
+                    }
+
+
+                } catch (Exception e) {
+                    Log.e("ERROR", e.getMessage(), e);
+                    callback.apiErrorAction(e.getMessage(), callbackId);
                 }
-                bufferedReader.close();
-
-                JSONObject object = (JSONObject) new JSONTokener(stringBuilder.toString()).nextValue();
-                callback.apiResultAction(object);
-
-            }finally {
-                urlConnection.disconnect();
             }
+        });
+        thread.start();
 
-
-        } catch (Exception e) {
-            Log.e("ERROR", e.getMessage(), e);
-            callback.apiErrorAction(e.getMessage());
-        }
     }
 
     public interface ApiServiceInterface{
-        void apiResultAction(JSONObject result);
-        void apiErrorAction(String message);
+        void apiResultAction(JSONObject result, String callbackId);
+        void apiErrorAction(String message, String callbackId);
     }
 
 }
